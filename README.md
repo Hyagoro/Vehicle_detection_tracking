@@ -37,11 +37,11 @@ Here is an example using the `YCrCb` color space and HOG parameters of `orientat
 
 ![alt text][image4]
 
-I tried various combinations of parameters (`orientations=11` and `pixels_per_cell=(16, 16)` but my results was interesting.
+I tried various combinations of parameters (`orientations=11` and `pixels_per_cell=(16, 16)` but my results were not interesting.
 
 #### Classifier training using HOG features, binned color features and histogram.
 
-I trained a Random Forest classifier insteed of LinearSVM because I think Random Forest is a better generalizer and the learning time is almost the same. I also tried SVM but the learning time was far too long. With the Random forest (max_depth=18) I got 0.9842 accuracy.
+I trained a Random Forest classifier instead of LinearSVM because I think Random Forest is a better generalizer and the learning time is almost the same. I also tried SVM but the learning time was far too long. With the Random forest (max_depth=18) I got 0.9842 accuracy.
 
 ### Sliding Window Search
 
@@ -56,7 +56,7 @@ I decided to search with different window positions and scales following this ar
 | 1      | [400, 480]  |
 | 0.7    | [400, 480]  |
 
-I tried to use PCA to reduce feature vector length (8460) to 4000, and 6000 but the results wasn't good enough due to loosing a lot of calculation time during prediction.
+I tried to use PCA to reduce feature vector length (8460) to 4000, and 6000 but the results were not good enough due to losing a lot of calculation time during prediction.
 Ultimately I searched on 4 scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result. Here are some example images:
 
 ![alt text][image5]
@@ -84,9 +84,9 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 ### Discussion
 
-A big part of this project was to find where I had to put my sliding windows in order to be at a good scale regarding the road. I think it's still too long to process, I need to find better coordinates to improve my pipeline, mostly because my boxes are to small comparing to the vehicle size. I spend alse a lot of time finding the best color transformation to use to detect vehicles (HLS, YUV, YCrCb, RGB, ...).
+A big part of this project was to find where I had to put my sliding windows in order to be at a good scale regarding the road. I think it's still too long to process, I need to find better coordinates to improve my pipeline, mostly because my boxes are too small comparing to the vehicle size. I spent also a lot of time finding the best color transformation to detect vehicles (HLS, YUV, YCrCb, RGB, ...).
 
-I also implement two classes in note 2 of the Jupyter notebook. This 2 classes helps to remove outliers by giving a increasing confidence to "hot points" from the heatmap during video processing.
+I also implemented two classes in note 2 of the Jupyter notebook. This 2 classes help to remove outliers by giving an increasing confidence to "hot points" from the heatmap during video processing.
 
-To compare my project to the state of the art in pattern detection (very frustrating), I found YOLO a deep neural network based on COCO dataset, which have incredible perfomances in this field.
+To compare my project to the state of the art in pattern detection (very frustrating), I found YOLO, a deep neural network based on COCO dataset, which have incredible perfomances in this field.
 
